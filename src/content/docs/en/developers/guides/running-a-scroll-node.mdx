@@ -68,7 +68,8 @@ Please consider opening port `30303`(UDP & TCP) and enabling discovery so that o
         --datadir "./l2geth-datadir" \
         --gcmode archive --cache.noprefetch \
         --http --http.addr "0.0.0.0" --http.port 8545 --http.api "eth,net,web3,debug,scroll" \
-        --l1.endpoint "$L2GETH_L1_ENDPOINT" --rollup.verify
+        --l1.endpoint "$L2GETH_L1_ENDPOINT" --rollup.verify \
+        --gpo.congestionthreshold=500
     ```
     For Scroll Sepolia, use `--scroll-sepolia` instead of `--scroll`
     
@@ -117,7 +118,8 @@ Running the node in Docker might have a significant impact on node performance.
         --datadir "/volume/l2geth-datadir" \
         --gcmode archive --cache.noprefetch \
         --http --http.addr "0.0.0.0" --http.port 8545 --http.api "eth,net,web3,debug,scroll" \
-        --l1.endpoint "$L2GETH_L1_ENDPOINT" --rollup.verify
+        --l1.endpoint "$L2GETH_L1_ENDPOINT" --rollup.verify \
+        --gpo.congestionthreshold=500
     ```
     For Scroll Sepolia, set the chain ID to 534351 and use `--scroll-sepolia` instead of `--scroll`.
 
