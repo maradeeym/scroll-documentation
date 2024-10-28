@@ -149,10 +149,10 @@ This mode is useful for reconstructing the L2 state by only following the L1.
 
 Run `l2geth` with the `--da.sync` flag. Provide blob APIs and beacon node with
 - `--da.blob.beaconnode "<L1 beacon node>"` (recommended, if beacon node supports historical blobs)
-- `--da.blob.blobscan "https://api.blobscan.com/blobs/"` `--da.blob.blocknative "https://api.ethernow.xyz/v1/blob/"` for mainnet
+- `--da.blob.blobscan "https://api.blobscan.com/blobs/"` `--da.blob.blocknative "https://api.ethernow.xyz/v1/blob/"` for Mainnet
 - `--da.blob.blobscan "https://api.sepolia.blobscan.com/blobs/"` for Sepolia.
 
-Strictly speaking only one of the blob providers is necessary, but during testing blobscan and blocknative were not fully reliable. That's why using a beacon node with historical blob data is recommended (can be additionally to blobscan and blobnative).
+Strictly speaking only one of the blob providers is necessary, but during testing blobscan and blocknative were not fully reliable. That's why using a beacon node with historical blob data is recommended (can be in addition to blobscan and blobnative).
 
 ### Mainnet
 ```bash
@@ -209,7 +209,8 @@ INFO [09-18|13:42:24.324] L1 sync progress                         "blockhain he
 INFO [09-18|13:42:25.555] Syncing L1 messages                      processed=20,641,529 confirmed=20,777,179 collected=402 progress(%)=99.347
 ```
 
-**Temporary errors**
+#### Temporary errors
+
 Especially at the beginning some errors like below might appear in the console. This is expected, as the pipeline relies on the L1 messages but in case they're not synced fast enough such an error might pop up. It will continue once the L1 messages are available.
 ```
 WARN [09-18|13:52:25.843] syncing pipeline step failed due to temporary error, retrying err="temporary: failed to process logs to DA, error: failed to get commit batch da: 7, err: failed to get L1 messages for v0 batch 7: EOF: <nil>"
@@ -217,7 +218,7 @@ WARN [09-18|13:52:25.843] syncing pipeline step failed due to temporary error, r
 
 ## Limitations
 
-The `state root` of a block can be reproduced when using this mode of syncing but currently not the `block hash`. This is due to the fact that currently the header fields `difficulty` and `extraData` are not stored on DA but these fields are utilized by [Clique consensus](https://eips.ethereum.org/EIPS/eip-225) which is used by the Scroll protocol. This will be fixed in a future upgrade where the main implementation on l2geth is already done: https://github.com/scroll-tech/go-ethereum/pull/903 https://github.com/scroll-tech/go-ethereum/pull/913.
+The `state root` of a block can be reproduced when using this mode of syncing but currently not the `block hash`. This is due to the fact that currently the header fields `difficulty` and `extraData` are not stored on DA but these fields are utilized by [Clique consensus](https://eips.ethereum.org/EIPS/eip-225) which is used by the Scroll protocol. This will be fixed in a [future upgrade](https://github.com/scroll-tech/go-ethereum/pull/903 https://github.com/scroll-tech/go-ethereum/pull/913) where the main implementation on l2geth is already done.
 
 To verify the locally created `state root` against mainnet (`https://sepolia-rpc.scroll.io/` for Sepolia), we can do the following:
 
