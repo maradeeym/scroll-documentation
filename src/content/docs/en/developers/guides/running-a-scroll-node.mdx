@@ -167,11 +167,6 @@ Strictly speaking only one of the blob providers is necessary, but during testin
 --verbosity 3
 ```
 
-A full sync will take about 2 weeks depending on the speed of the RPC node, beacon node and the local machine. Progess is reported as follows for every 1000 blocks applied:
-
-```bash
-INFO [08-01|16:44:42.173] L1 sync progress                         blockhain height=87000 block hash=608eec..880ebd root=218215..9a58a2
-```
 
 ### Sepolia
 ```bash
@@ -186,7 +181,7 @@ INFO [08-01|16:44:42.173] L1 sync progress                         blockhain hei
 --verbosity 3
 ```
 
-A full sync will take about 2-3 days depending on the speed of the RPC node, beacon node and the local machine. Progess is reported as follows for every 1000 blocks applied:
+A full sync will take about 2 weeks for Mainnet and 2-3 days for Sepolia depending on the speed of the RPC node, beacon node and the local machine. Progess is reported as follows for every 1000 blocks applied:
 
 ```bash
 INFO [08-01|16:44:42.173] L1 sync progress                         blockhain height=87000 block hash=608eec..880ebd root=218215..9a58a2
@@ -194,10 +189,11 @@ INFO [08-01|16:44:42.173] L1 sync progress                         blockhain hei
 
 
 ### Troubleshooting
-You should see something like this shortly after starting:
 - the node (APIs, geth console, etc) will not be responsive until all the L1 messages have been synced
 - but it is already starting the derivation pipeline which can be seen through `L1 sync progress [...]`.
 - for Sepolia it might take a little longer (10-20mins) for the first `L1 sync progress [...]` to appear as the L1 blocks are more sparse at the beginning
+
+You should see something like this shortly after starting:
 ```bash
 INFO [09-18|13:41:34.039] Starting L1 message sync service         latestProcessedBlock=20,633,529
 WARN [09-18|13:41:34.551] Running initial sync of L1 messages before starting l2geth, this might take a while...
